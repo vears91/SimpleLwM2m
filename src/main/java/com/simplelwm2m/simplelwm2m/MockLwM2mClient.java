@@ -94,7 +94,7 @@ public class MockLwM2mClient {
     /**
      * Holds the LWM2M objects, instances and resources available in this mock device.
      */
-    protected ConcurrentHashMap<Integer, CoapResource> objects;
+    protected ConcurrentHashMap<String, CoapResource> objects;
     
     /**
      * 
@@ -136,7 +136,7 @@ public class MockLwM2mClient {
 	 * @param id
 	 * @return
 	 */
-	public CoapResource getObject(int id) {
+	public CoapResource getObject(String id) {
     	return objects.get(id);
     }
     
@@ -154,7 +154,7 @@ public class MockLwM2mClient {
 	 * @param id
 	 * @param resource
 	 */
-    public void addObject(int id, CoapResource resource) {
+    public void addObject(String id, CoapResource resource) {
     	this.mockClientServer.add(resource);
     	objects.put(id, resource);
     }
@@ -163,7 +163,7 @@ public class MockLwM2mClient {
      * Add a {@link SimpleResource} with the specified ID.
      * @param id
      */
-    public void addSimpleResource(int id) {
+    public void addSimpleResource(String id) {
     	SimpleResource r = new SimpleResource(id);
     	mockClientServer.add(r);
     	objects.put(id, r);

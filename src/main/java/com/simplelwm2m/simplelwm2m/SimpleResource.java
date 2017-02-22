@@ -19,8 +19,8 @@ public class SimpleResource extends CoapResource {
      * with GET or written with a POST or PUT
      * @param id
      */
-	public SimpleResource(int id) {
-		super(Integer.toString(id));
+	public SimpleResource(String id) {
+		super(id);
 		setObservable(true);
 	}
 	
