@@ -12,7 +12,7 @@ import org.eclipse.californium.core.server.resources.CoapExchange;
 
 public class SimpleResource extends CoapResource {
     
-    private String resourceValue;
+    private String resourceValue = "0";
 	
     /**
      * Build a simple, observable CoapResource with a value that can be readen
