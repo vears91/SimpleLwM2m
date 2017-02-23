@@ -1,5 +1,6 @@
 package com.simplelwm2m.simplelwm2m;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 import org.eclipse.californium.core.CoapClient;
@@ -13,6 +14,8 @@ import org.eclipse.californium.core.server.resources.CoapExchange;
 public class SimpleResource extends CoapResource {
     
     private String resourceValue = "0";
+
+    private int encoding = MockLwM2mClient.TEXT_ENCODING;
 	
     /**
      * Build a simple, observable CoapResource with a value that can be readen
@@ -33,6 +36,25 @@ public class SimpleResource extends CoapResource {
 		changed();
 	}
 	
+	/**
+	 * @return Encoding used by this resource
+	 */
+	public int getEncoding() {
+		return encoding;
+	}
+
+	/**
+	 * Set the encoding to use for this resource
+	 * @param encoding See the constants in MockLwM2mClient or
+	 * https://www.iana.org/assignments/core-parameters/core-parameters.xhtml
+	 * @throws UnsupportedEncodingException
+	 */
+	public void setEncoding(int encoding) throws UnsupportedEncodingException {
+		if (encoding != MockLwM2mClient.TEXT_ENCODING)
+			throw new UnsupportedEncodingException();
+		this.encoding = encoding;
+	}
+
 	/**
 	 * GET the value.
 	 */
