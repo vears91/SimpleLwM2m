@@ -28,11 +28,11 @@ public class MockLwM2mClient {
     /**
      * Constants for the encoding values https://www.iana.org/assignments/core-parameters/core-parameters.xhtml
      */
-    private static final int TLV_ENCODING = 11542;
-    private static final int JSON_ENCODING = 11543;
-    private static final int TEXT_ENCODING = 0;
-    private static final int OPAQUE_ENCODING = 42;
-    private static final int LINK_FORMAT_ENCODING = 40;
+    public static final int TLV_ENCODING = 11542;
+    public static final int JSON_ENCODING = 11543;
+    public static final int TEXT_ENCODING = 0;
+    public static final int OPAQUE_ENCODING = 42;
+    public static final int LINK_FORMAT_ENCODING = 40;
         
     /**
      * The LWM2M endpoint for this mock client.
@@ -45,9 +45,9 @@ public class MockLwM2mClient {
     protected String serverURI; 
   
     /**
-     * Encoding to use, defaults to TLV.
+     * Encoding to use, defaults to text encoding.
      */
-    protected int encoding = TLV_ENCODING;
+    protected int encoding = TEXT_ENCODING;
     
     /**
      * Binding mode, defaults to UDP.
@@ -246,7 +246,7 @@ public class MockLwM2mClient {
     	
         coapRequest.setDestination(serverAddress.getAddress());
         coapRequest.setDestinationPort(serverAddress.getPort());
-        coapRequest.getOptions().setContentFormat(encoding);
+        coapRequest.getOptions().setContentFormat(LINK_FORMAT_ENCODING);
         coapRequest.getOptions().addUriPath(registrationPath);
 
         HashMap<String, String> attributes = new HashMap<>();
