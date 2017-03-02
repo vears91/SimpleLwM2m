@@ -176,14 +176,42 @@ public class MockLwM2mClient {
     */
     public MockLwM2mClient(String endpoint, String serverURI) {
         NetworkConfig.getStandard();
-
         this.endpoint = endpoint;
         this.serverURI =  serverURI;
         objects = new ConcurrentHashMap<>();
         coapEndpoint = new CoapEndpoint(new InetSocketAddress(0));
         mockClientServer = new CoapServer();
         registrationId = "";
+        InetAddress serverAddr;
+        try {
+            String[] parts = serverURI.split(":");
+            String host = parts[1].replaceAll("//", "");
+            int port = Integer.parseInt(parts[2]);
+            serverAddr = InetAddress.getByName(host);
+            serverAddress = new InetSocketAddress(serverAddr, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+    * Class constructor that also accepts a CoapServer as a parameter.
+    * This is useful for benchmark scenarios where having different state of
+    * resources per mock client is not important, and sharing an instance of a
+    * server will help save system resources.
+    * @param endpoint LWM2M endpoint for this mock client
+    * @param serverURI In the format coap://host:port
+    * @param server CoapServer to serve requests.
+    */
+    public MockLwM2mClient(String endpoint, String serverURI,
+    CoapServer server) {
+        NetworkConfig.getStandard();
+        mockClientServer = server;
+        this.endpoint = endpoint;
+        this.serverURI =  serverURI;
+        objects = new ConcurrentHashMap<>();
+        coapEndpoint = new CoapEndpoint(new InetSocketAddress(0));
+        registrationId = "";
         InetAddress serverAddr;
         try {
             String[] parts = serverURI.split(":");
