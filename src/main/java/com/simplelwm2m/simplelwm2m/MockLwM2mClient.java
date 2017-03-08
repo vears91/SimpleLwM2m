@@ -296,9 +296,11 @@ public class MockLwM2mClient {
 
     private String createObjectRegistrationLinks() {
         String payload = "";
-        for (Resource objectId : objects.values()) {
-            for (Resource instanceId : objectId.getChildren()) {
-                payload += "</"+objectId.getName()+"/"+instanceId.getName()+">,";
+        for (Resource objectId : mockClientServer.getRoot().getChildren()) {
+            if (objectId.getName().equals(".well-known"))
+            continue;
+            for (Resource instance : objectId.getChildren()) {
+                payload += "</"+objectId.getName()+"/"+instance.getName()+">,";
             }
         }
 
