@@ -16,7 +16,7 @@ Maven Central artifact coming soon!
 
 # Usage
 
-Check out this [example](https://github.com/vears91/simplelwm2m/blob/master/src/main/java/com/simplelwm2m/simplelwm2m/MockLwmM2mClientDemo.java)
+Check out this [example](https://github.com/vears91/simplelwm2m/blob/master/src/main/java/com/simplelwm2m/simplelwm2m/MockLwM2mClientDemo.java)
 
 
 
