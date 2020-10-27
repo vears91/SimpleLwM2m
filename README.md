@@ -1,3 +1,5 @@
+# Please note that this project is not currently being maintained! It is kept for reference, but it is likely to have issues with current versions of JMeter and other libraries
+
 # SimpleLwM2m
 
 This project implements a library for a mock LWM2M client. It is able to register, derregister, hold basic objects, instances and resources and interact with a LWM2M server.
